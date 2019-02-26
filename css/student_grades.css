@@ -1,6 +1,13 @@
 table {
     border-collapse: collapse;
+	table-layout: auto;
+	width: 800px;
     font-family: sans-serif;
+}
+
+input {
+	resize: horizontal;
+	width: 120px;
 }
 
 td,
