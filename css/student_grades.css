@@ -1,0 +1,50 @@
+table {
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+th {
+    background: #ddd;
+}
+
+.name_id {
+    text-align: left;
+}
+
+.grades {
+    text-align: right;
+}
+
+.heading {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    font-size: 14px;
+    padding: 0.6rem 1rem;
+    background: #0073e6;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: background 300ms ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #4da6ff;
+}
+
+button:active {
+    background: black;
+}
