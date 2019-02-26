@@ -34,6 +34,7 @@ function gradeTotal() {
             return;
         } else {
             document.getElementById("final" + finalRow).innerHTML = total + "%";
+            document.getElementById("final" + finalRow).style="text-align: right;";
         }
 
         if (students > 1) {
