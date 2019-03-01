@@ -1,40 +1,48 @@
 function gradeTotal() {
 
     var students = 10;
-    var currRow = 1;
-    var finalRow = 1;
+    var currRow = 1; // references each student row
+    var finalCell = 1; // references the cell that contains the final grade
+
+    var counter = 0;
 
     do {
 
         var total = 0;
-        var row1Length = document.getElementsByClassName("gr" + currRow).length;
-        console.log("row length is: " + row1Length);
 
-        for (var i = 0; i < row1Length; i++) {
+        var row = document.getElementsByClassName("gr" + currRow);
+        var rowLength = row.length;
+        var totalRow = document.getElementById("final" + finalCell);
+        console.log("row length is: " + rowLength);
 
-            var row1 = document.getElementsByClassName("gr" + currRow)[i].value;
+        for (var i = 0; i < rowLength; i++) {
 
-            /*if (isNaN(row1)) {
-                row1 = 0;
+            if (isNaN(row[i].value) | row[i].value < 0 | row[i].value > 100) {
+                row[i].style.backgroundColor = "yellow";
+                row[i].value = "-"
+                counter++;
             } else {
-                row1 = parseInt(row1);
-            }*/
+                if (row[i].style.backgroundColor == "yellow") {
+                    row[i].style.backgroundColor = "white";
+                }
+                total += parseInt(row[i].value);
 
-            row1 = parseInt(row1);
-            total += row1;
+            }
+
+            //total += currAssignmentGrade(currRow, i, counter);
             console.log("running total: " + total);
         }
 
-        total /= row1Length;
+        total /= rowLength;
         console.log("unrounded total is: " + total);
         total = Math.round(total);
         console.log("rounded total is: " + total);
-        if (isNaN(total)) {
-            alert("Assignment grade records incomplete - please ensure grades for all assignments are entered.");
-            return;
-        } else {
-            document.getElementById("final" + finalRow).innerHTML = total + "%";
-            document.getElementById("final" + finalRow).style="text-align: right;";
+
+        totalRow.innerHTML = total + "%";
+        totalRow.style = "text-align: right;";
+        if (total < 40) {
+            totalRow.style.backgroundColor = "red";
+            totalRow.style.color = "white";
         }
 
         if (students > 1) {
@@ -42,7 +50,24 @@ function gradeTotal() {
         }
         students--;
         currRow++;
-        finalRow++;
+        finalCell++;
     }
-    while (students >= 1 && currRow <= 10 && finalRow <= 10);
+    while (students >= 1 && currRow <= 10 && finalCell <= 10);
+    console.log("Unsubmitted assignments: " + counter);
+}
+
+window.onload = function() {
+    var currRow = 1;
+
+    do {
+
+        var row = document.getElementsByClassName("gr" + currRow);
+        var rowLength = row.length;
+
+        for (var i = 0; i < rowLength; i++) {
+            row[i].addEventListener("change", gradeTotal);
+        }
+        currRow++;
+    }
+    while (currRow <= 10);
 }
