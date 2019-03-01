@@ -1,8 +1,8 @@
 function gradeTotal() {
 
     var students = 10;
-    var currRow = 1; // references each student row
-    var finalCell = 1; // references the cell that contains the final grade
+    var currRow = 1;
+    var finalCell = 1;
 
     var counter = 0;
 
@@ -17,7 +17,7 @@ function gradeTotal() {
 
         for (var i = 0; i < rowLength; i++) {
 
-            if (isNaN(row[i].value) | row[i].value < 0 | row[i].value > 100) {
+            if (isNaN(row[i].value) | row[i].value == "" | row[i].value == "-0" | row[i].value < 0 | row[i].value > 100) {
                 row[i].style.backgroundColor = "yellow";
                 row[i].value = "-"
                 counter++;
@@ -54,9 +54,12 @@ function gradeTotal() {
     }
     while (students >= 1 && currRow <= 10 && finalCell <= 10);
     console.log("Unsubmitted assignments: " + counter);
+    document.getElementById("counter").innerHTML = counter;
+
+    buttonClicked();
 }
 
-window.onload = function() {
+function buttonClicked() {
     var currRow = 1;
 
     do {
